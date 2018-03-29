@@ -28,7 +28,7 @@ mainList = {
 // var shopGoods = mainList.shopGoods;
 
 // Циклы фторого урока
-
+// Урок №3
 function calcDiscount() {
  if (discount === true) {
   price = (price*80)/100; /*price*=0.8*/
