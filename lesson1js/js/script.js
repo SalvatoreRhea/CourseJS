@@ -1,16 +1,17 @@
 let budget,
     shopName,
     time,
-    price
+    price,
+    shopItems = []
 
 function start() {
- budget = prompt("Ваш бюджет");
+ budget = prompt("Ваш бюджет", '');
 
  while (isNaN(budget) || budget == "" || budget == null) {
-  budget = prompt("Ваш бюджет");
+  budget = prompt("Ваш бюджет", '');
  }
 
- shopName = prompt("Название вашего магазина?").toUpperCase();
+ shopName = prompt("Название вашего магазина?", '').toUpperCase();
  time = 21;
 }
 start();
@@ -20,34 +21,11 @@ mainList = {
  shopName: shopName,
  shopGoods: [],
  employers: {},
- open: true, 
- discount: false
-}
-
-// var budget = mainList.budget;
-// var shopGoods = mainList.shopGoods;
-
-// Циклы фторого урока
-// Урок №3
-function calcDiscount() {
- if (discount === true) {
-  price = (price*80)/100; /*price*=0.8*/
- } /*Можно без ===, так как по факту true */
-}
-// calcDiscount();
-
-function hireEmployers () {
- for (let i = 1; i < 5; i++) {
-  let a = prompt ("Как вас зовут?");
-  mainList.employers[i] = a;
- }
-}
-hireEmployers();
-
-
-function chooseGoods() {
+ open: false, 
+ discount: false,
+ chooseGoods: function chooseGoods() {
 for (var i = 0; i < 3; i++) {
- var a = prompt ("Какой тип товаров будем продавать?");
+ var a = prompt ("Какой тип товаров будем продавать?", '');
  // mainList.shopGoods[i] = a;
  if ((typeof(a)) === 'string' && (typeof(a)) !== null && a != '' && a.length < 50 ) {
   console.log("All true");
@@ -57,21 +35,73 @@ for (var i = 0; i < 3; i++) {
   console.log("Not true");
  }
 }
-}
-chooseGoods();
-
-function workTime(time) {
+},
+  workTime: function workTime(time) {
 if (time < 0) {
  console.log("its not a possible!");
 } else if (time > 8 && time < 20){
  console.log("Work time!")
+ mainList.open = true;
 } else if (time < 24) {
  console.log("To late!")
 } else{
  console.log("A day only 24 hours!")
 }
+},
+  calcBudget: function calcBudget() {
+ var dailyBudget = budget/30;
+ alert("Бюджет на один день равен: " + dailyBudget);
+
+},
+  calcDiscount: function calcDiscount() {
+ if (discount === true) {
+  price = (price*80)/100; /*price*=0.8*/
+ } /*Можно без ===, так как по факту true */
+},
+  hireEmployers: function hireEmployers() {
+ for (let i = 1; i < 5; i++) {
+  let name = prompt ("Имя сотрудника", '');
+  while (typeof(name) !== 'string' || name == "" || name == null) {
+   name = prompt ("Имя сотрудника", '');
+  }
+  mainList.employers[i] = name;
+ }
+},
+  chooseShopItems: function chooseShopItems() {
+   let items = prompt("Перечислите через запятую товары", '');
+   while (typeof(items) !== 'string' || items =="" || items == null) {
+    items = prompt("Перечислите через запятую товары", '');
+   }
+   mainList.shopItems = items.split(",");
+   let waiting = prompt("Подождите, еще", '');
+   while (typeof(waiting) !== 'string' || waiting =="" || waiting == null) {
+    waiting = prompt("Подлождите, еще", '');
+   };
+   mainList.shopItems.push(waiting);
+   mainList.shopItems.sort();
+   document.write("У нас вы можете купить <br>");
+   mainList.shopItems.forEach(function(item,i) {
+ document.write((i+1) + ": " + item + "<br>")
+ })
+  }
 }
-workTime(18);
+  console.log("Наш магазин включает в себя: ");
+for (var key in mainList) {
+  console.log(key);
+}
+
+
+console.log(mainList);
+
+
+// var budget = mainList.budget;
+// var shopGoods = mainList.shopGoods;
+
+
+
+
+
+
 
 
 // var i = 0;
@@ -108,13 +138,6 @@ workTime(18);
 
 // Цикл с первого урока закончится тут!
 
-function calcBudget() {
 
- var dailyBudget = budget/30;
- alert("Бюджет на один день равен: " + dailyBudget);
 
-}
-calcBudget();
-
-console.log(mainList);
 
