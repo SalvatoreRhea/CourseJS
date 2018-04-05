@@ -95,10 +95,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
   more.addEventListener('click', function(event) {
     if (event.target && event.target.className == 'description-btn') {
-    this.classList.add('more-splash');
+    event.target.classList.add('more-splash');
     overlay.style.display = "block";
     document.body.style.overflow = 'hidden';
-    }
+  }
   });
 
   close.addEventListener('click', function() {
