@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
  // Timer
 
- let deadLine = '2018-04-06';
+ let deadLine = '2018-04-07';
 
  function getTimeRemaining(endtime) {
   let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
       };
 
-      updateClock();
+      // updateClock();
       let timeInterval = setInterval(updateClock, 1000);
  };
 
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function() {
     close = document.querySelector('.popup-close');
 
   more.addEventListener('click', function(event) {
-    if (event.target && event.target.className == 'description-btn') {
+    if (event.target && event.target.matches('.description-btn')) {
     event.target.classList.add('more-splash');
     overlay.style.display = "block";
     document.body.style.overflow = 'hidden';
